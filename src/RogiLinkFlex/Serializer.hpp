@@ -69,9 +69,12 @@ serialize(uint8_t* buffer, size_t* size, const T data){
 // 可変長引数の場合
 template <typename T, typename... Args>
 void serialize(uint8_t* buffer, size_t* size, const T data, Args... args){
-    serialize(buffer, size, data);
-    serialize(buffer + *size, size, args...);
+    size_t s1, s2;
+    serialize(buffer, &s1, data);
+    serialize(buffer + s1, &s2, args...);
+    *size = s1 + s2; 
 };
+
 
 // ------ デシリアライズ ------
 
