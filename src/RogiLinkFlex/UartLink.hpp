@@ -9,10 +9,10 @@ class UartLink : public CobsEncodedCommunicationBase {
         // 送信処理
         void send_raw(uint8_t* data, uint8_t size) override;
 
-    private:
-        // 受信割り込み
-        void interrupt();
+        // 受信処理
+        void loop();
 
+    private:
         HardwareSerial& uart;
         uint8_t receive_buffer[BUFFER_SIZE];
         uint8_t receive_buffer_index = 0;

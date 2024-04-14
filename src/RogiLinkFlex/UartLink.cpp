@@ -4,7 +4,7 @@
 UartLink::UartLink(HardwareSerial& serial, uint8_t device_id)
  : CobsEncodedCommunicationBase(device_id), uart(serial)
 {  
-    uart.onReceive([this](){ this->interrupt(); }); // 受信割り込みの登録
+    
 }
 
 // 送信処理
@@ -14,8 +14,8 @@ void UartLink::send_raw(uint8_t* data, uint8_t size)
     uart.write(data, size);
 }
 
-// 受信割り込み
-void UartLink::interrupt()
+// 受信処理
+void UartLink::loop()
 {
     if (!uart.available()) {
         return;
