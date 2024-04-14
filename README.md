@@ -42,7 +42,9 @@ void callback(データ型1, データ型2, ...) {
     // コールバック関数
 }
 
-sub.set_callback(callback); // コールバック関数の設定
+void setup() {
+    sub.set_callback(callback); // コールバック関数の設定
+}
 
 void loop() {
     uart.loop(); // メインループ内でloop関数を呼び出す
